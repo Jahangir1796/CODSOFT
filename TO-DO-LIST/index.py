@@ -21,7 +21,7 @@ def display_tasks():      # function to display task
         for i, task in enumerate(tasks, start=1):
             print(f"{i}. {task}")
     else:
-        print("No tasks in the list.")
+        print("There is no tasks in the list.")
 
 def update_task(task_index, new_task):   # Function to update task 
     try:
