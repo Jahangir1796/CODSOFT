@@ -1,5 +1,4 @@
 import random
-
 def generate_password(length, complexity):
     if complexity == "low":
         characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
