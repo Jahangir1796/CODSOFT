@@ -2,7 +2,7 @@ import random
 
 def get_user_choice():
     while True:
-        user_choice = input("Enter your choice (rock, paper, or scissors): ") #.strip().lower()
+        user_choice = input("Enter your choice (rock, paper, or scissors): ")
         if user_choice in ['rock', 'paper', 'scissors']:
             return user_choice
         else:
@@ -44,7 +44,7 @@ def main():
             computer_score += 1
 
         print(f"\nUser Score: {user_score}  Computer Score: {computer_score}")
-        play_again = input(f"\nDo you want to play again? (y/n): ")  #.strip().lower()
+        play_again = input(f"\nDo you want to play again? (y/n): ")
         if play_again != 'y':
             print("Thanks for playing!")
             break
