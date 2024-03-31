@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+from tkinter import simpledialog  # Import simpledialog
 
 class ContactApp:
     def __init__(self, root):
@@ -40,10 +41,12 @@ class ContactApp:
         self.update_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5, sticky="we")
         self.delete_button = ttk.Button(self.root, text="Delete Contact", command=self.delete_contact)
         self.delete_button.grid(row=6, column=0, columnspan=2, padx=5, pady=5, sticky="we")
+        self.search_button = ttk.Button(self.root, text="Search Contact", command=self.search_contact_prompt)
+        self.search_button.grid(row=7, column=0, columnspan=2, padx=5, pady=5, sticky="we")
 
         # Contact List
         self.contact_listbox = tk.Listbox(self.root, width=80, height=10)
-        self.contact_listbox.grid(row=7, column=0, columnspan=2, padx=5, pady=20)
+        self.contact_listbox.grid(row=8, column=0, columnspan=2, padx=5, pady=20)
 
     def apply_styles(self):
         style = ttk.Style()
@@ -58,6 +61,8 @@ class ContactApp:
         style.map('Update.TButton', background=[('active', '#e0a800')])
         style.configure('Delete.TButton', font=('Arial', 12), foreground='white', background='#dc3545', padding=10)
         style.map('Delete.TButton', background=[('active', '#c82333')])
+        style.configure('Search.TButton', font=('Arial', 12), foreground='white', background='#28a745', padding=10)
+        style.map('Search.TButton', background=[('active', '#218838')])
 
     def add_contact(self):
         name = self.name_entry.get()
@@ -99,6 +104,21 @@ class ContactApp:
         else:
             messagebox.showerror("Error", "Please select a contact from the list")
 
+    def search_contact_prompt(self):
+        search_name = simpledialog.askstring("Search Contact", "Enter name to search:")
+        if search_name:
+            self.search_contact(search_name)
+
+    def search_contact(self, search_name):
+        found_contacts = [contact for contact in self.contacts if contact["Name"] == search_name]
+
+        if found_contacts:
+            messagebox.showinfo("Search Results", f"Found {len(found_contacts)} contacts matching the name '{search_name}'")
+            for contact in found_contacts:
+                messagebox.showinfo("Contact Details", f"Name: {contact['Name']}\nPhone: {contact['Phone']}\nEmail: {contact['Email']}\nAddress: {contact['Address']}")
+        else:
+            messagebox.showinfo("Search Results", f"No contacts found matching the name '{search_name}'")
+
     def update_contact_listbox(self):
         self.contact_listbox.delete(0, tk.END)
         for contact in self.contacts:
@@ -113,4 +133,4 @@ class ContactApp:
 
 root = tk.Tk()
 app = ContactApp(root)
-oot.mainloop()
+root.mainloop()
