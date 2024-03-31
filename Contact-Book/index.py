@@ -67,7 +67,7 @@ class ContactApp:
 
         if name and phone:
             self.contacts.append({"Name": name, "Phone": phone, "Email": email, "Address": address})
-            messagebox.showinfo("Success", "Contact added successfully")
+            messagebox.showinfo("Success", "Contact added")
             self.update_contact_listbox()
             self.clear_entries()
         else:
@@ -85,7 +85,7 @@ class ContactApp:
             selected_contact["Email"] = self.email_entry.get()
             selected_contact["Address"] = self.address_entry.get()
 
-            messagebox.showinfo("Success", "Contact updated successfully")
+            messagebox.showinfo("Success", "Contact updated")
             self.update_contact_listbox()  # Update the contact listbox
         else:
             messagebox.showerror("Error", "Please select a contact from the list")
@@ -94,7 +94,7 @@ class ContactApp:
         selected_index = self.contact_listbox.curselection()
         if selected_index:
             self.contacts.pop(selected_index[0])
-            messagebox.showinfo("Success", "Contact deleted successfully")
+            messagebox.showinfo("Success", "Contact deleted")
             self.update_contact_listbox()
         else:
             messagebox.showerror("Error", "Please select a contact from the list")
@@ -111,7 +111,6 @@ class ContactApp:
         self.email_entry.delete(0, tk.END)
         self.address_entry.delete(0, tk.END)
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = ContactApp(root)
-    root.mainloop()
+root = tk.Tk()
+app = ContactApp(root)
+oot.mainloop()
